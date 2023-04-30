@@ -27,8 +27,8 @@ jobs:
       - uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.REGISTRY_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v3
         with:
           context: ./oses/${{ matrix.oses }}
@@ -36,4 +36,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/pterodactyl/yolks:${{ matrix.oses }}
+            ghcr.io/shiro8613/yolks:${{ matrix.oses }}
